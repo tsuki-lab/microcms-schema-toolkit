@@ -12,7 +12,11 @@ importers:
         specifier: ^1.10.15
         version: 1.10.15
 
-  packages/microcms-field-types:
+  packages/microcms-api-schema-builder:
+    dependencies:
+      microcms-field-types:
+        specifier: workspace:*
+        version: link:../microcms-field-types
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.7.5
@@ -32,6 +36,30 @@ importers:
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
+  packages/microcms-field-types:
+    devDependencies:
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^6.7.5
+        version: 6.7.5(@typescript-eslint/parser@6.7.5)(eslint@8.51.0)(typescript@5.2.2)
+      esbuild:
+        specifier: ^0.19.4
+        version: 0.19.4
+      eslint:
+        specifier: ^8.51.0
+        version: 8.51.0
+      eslint-config-prettier:
+        specifier: ^9.0.0
+        version: 9.0.0(eslint@8.51.0)
+      eslint-plugin-import:
+        specifier: ^2.28.1
+        version: 2.28.1(@typescript-eslint/parser@6.7.5)(eslint@8.51.0)
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
