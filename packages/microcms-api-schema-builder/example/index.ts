@@ -1,8 +1,14 @@
-import * as path from 'path';
-import { MicroCMSApiSchemaBuilder } from '../src';
+import { microcms } from '../src';
 
-new MicroCMSApiSchemaBuilder().json({
-  outputFilePath: path.resolve(__dirname, './output/schema.json'),
-});
+const schema = {
+  title: microcms
+    .textField({
+      name: 'タイトル',
+      description: '40文字以内でで入力してください。',
+    })
+    .required()
+    .textSizeLimitValidation(1, 40)
+    .unique(),
+};
 
-new MicroCMSApiSchemaBuilder().json({ logLevel: 'info' });
+console.log(schema);
