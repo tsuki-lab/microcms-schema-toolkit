@@ -2,8 +2,6 @@
 
 [microCMS](https://microcms.io/) のAPIスキーマのフィールドの型定義パッケージです。
 
-microCMSのAPIスキーマのフィールドは、以下の型を持ちます。
-
 ## Install
 
 ```shell
