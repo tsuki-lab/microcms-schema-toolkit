@@ -1,6 +1,6 @@
 {
   "name": "microcms-field-types",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MicroCMS field types",
   "types": "./dist/index.d.ts",
   "files": [
@@ -11,8 +11,11 @@
     "lint": "eslint src --ext .ts",
     "fix": "pnpm lint --fix"
   },
-  "keywords": [],
-  "dependencies": {},
+  "keywords": [
+    "microcms",
+    "typescript",
+    "types"
+  ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "esbuild": "^0.19.4",
