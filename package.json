@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Build microCMS API schema from TypeScript type definition",
   "scripts": {
+    "dev": "turbo dev",
     "build": "turbo build",
     "lint": "turbo lint"
   },
@@ -14,6 +15,7 @@
     "pnpm": ">=8.9.0"
   },
   "devDependencies": {
+    "tsx": "^3.13.0",
     "turbo": "^1.10.15"
   }
 }
