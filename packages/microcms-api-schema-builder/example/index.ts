@@ -1,14 +1,40 @@
 import { microcms } from '../src';
 
-const schema = {
+const customHtml = microcms.createCustomField({
+  fieldId: 'html',
+  name: 'HTML',
+  fields: {
+    html: microcms.textAreaField({
+      name: 'HTML',
+    }),
+  },
+});
+
+const customRichEditor = microcms.createCustomField({
+  fieldId: 'richEditor',
+  name: 'リッチエディタ',
+  fields: {
+    html: microcms.richEditorV2Field({
+      name: 'リッチエディタ',
+    }),
+  },
+});
+
+const apiSchema = microcms.apiSchema({
   title: microcms
     .textField({
       name: 'タイトル',
-      description: '40文字以内でで入力してください。',
     })
-    .required()
-    .textSizeLimitValidation(1, 40)
-    .unique(),
-};
+    .required(),
+  category: microcms
+    .relationField({
+      name: 'カテゴリー',
+    })
+    .required(),
+  contents: microcms.repeaterField({
+    name: '本文',
+    fields: [customHtml, customRichEditor],
+  }),
+});
 
-console.log(schema);
+console.log(apiSchema.json());

@@ -1,4 +1,60 @@
 {
-  "apiFields": [],
-  "customFields": []
+  "apiFields": [
+    {
+      "idValue": "2c2otlmfaj",
+      "kind": "text",
+      "name": "タイトル",
+      "required": true,
+      "fieldId": "title"
+    },
+    {
+      "kind": "relation",
+      "name": "カテゴリー",
+      "required": true,
+      "fieldId": "category"
+    },
+    {
+      "kind": "repeater",
+      "name": "本文",
+      "customFieldCreatedAtList": [
+        "2023-10-22T16:21:47.532Z",
+        "2023-10-22T16:21:47.863Z"
+      ],
+      "fieldId": "contents"
+    }
+  ],
+  "customFields": [
+    {
+      "fieldId": "html",
+      "name": "HTML",
+      "fields": [
+        {
+          "kind": "textArea",
+          "name": "HTML",
+          "idValue": "aei3a1ztc5",
+          "fieldId": "html"
+        }
+      ],
+      "createdAt": "2023-10-22T16:21:47.532Z",
+      "updatedAt": "2023-10-22T16:21:47.532Z",
+      "viewerGroup": "x44",
+      "position": [["aei3a1ztc5"]]
+    },
+    {
+      "fieldId": "richEditor",
+      "name": "リッチエディタ",
+      "fields": [
+        {
+          "kind": "richEditorV2",
+          "name": "リッチエディタ",
+          "idValue": "92iyuvby3e",
+          "fieldId": "html"
+        }
+      ],
+      "createdAt": "2023-10-22T16:21:47.863Z",
+      "updatedAt": "2023-10-22T16:21:47.863Z",
+      "viewerGroup": "21a",
+      "position": [["92iyuvby3e"]]
+    }
+  ]
 }
