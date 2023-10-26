@@ -1,25 +1,29 @@
 /** microCMS API Schema JSON Type */
 export type MicroCMSApiSchema = {
-  apiFields: MicroCMSApiFieldTypes[];
-  customFields: {
-    createdAt: string;
-    fieldId: string;
-    name: string;
-    fields: MicroCMSCustomFieldTypes[];
-    position: [string[], string[]] | [string[]];
-    updatedAt: string;
-    viewerGroup: string;
-  }[];
+  apiFields: MicroCMSApiFieldType[];
+  customFields: MicroCMSApiSchemaCustomFieldType[];
+};
+
+export type MicroCMSApiSchemaCustomFieldType = {
+  createdAt: string;
+  fieldId: string;
+  name: string;
+  fields: MicroCMSCustomFieldType[];
+  position: [string[], string[]] | [string[]];
+  updatedAt: string;
+  viewerGroup: string;
 };
 
 /** Selectable field types for CustomField */
-export type MicroCMSCustomFieldTypes = Exclude<
-  MicroCMSApiFieldTypes,
+export type MicroCMSCustomFieldType = Exclude<
+  MicroCMSApiFieldType,
   MicroCMSCustomField
->;
+> & {
+  idValue: string;
+};
 
 /** Selectable field types for ApiField */
-export type MicroCMSApiFieldTypes =
+export type MicroCMSApiFieldType =
   | MicroCMSTextFiled
   | MicroCMSTextAreaField
   | MicroCMSRichEditorV2Field
@@ -383,7 +387,7 @@ export type MicroCMSSelectField = {
    */
   required?: boolean;
   /** 選択肢 */
-  selectItems?: SelectItem[];
+  selectItems: SelectItem[];
   /**
    * 初期値
    * @description 入稿時の初期値を設定できます。
