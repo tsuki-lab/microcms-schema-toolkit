@@ -575,7 +575,7 @@ export type MicroCMSIframeField = {
   /**
    * 拡張フィールド URL
    */
-  iframeUrl?: string;
+  iframeUrl: string;
 };
 
 /**
