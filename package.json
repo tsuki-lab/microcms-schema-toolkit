@@ -1,11 +1,12 @@
 {
-  "name": "microcms-api-schema-builder",
+  "name": "microcms-schema-toolkit",
   "version": "0.1.0",
-  "description": "Build microCMS API schema from TypeScript type definition",
+  "description": "microCMS schema toolkit",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "publish": "turbo publish"
   },
   "author": "hanetsuki<me@tsuki-lab.net>",
   "packageManager": "pnpm@8.9.0",
