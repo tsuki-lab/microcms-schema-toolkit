@@ -33,8 +33,28 @@ describe('field.text', () => {
     });
     expect(result.patternMatchValidation).toEqual({
       regexp: {
-        pattern: params.regexp.source,
-        flags: params.regexp.flags ? params.regexp.flags : null,
+        pattern: '^[\\w\\s]+$',
+        flags: null,
+      },
+    });
+  });
+
+  it('should return a text field with default values when optional parameters are not provided', () => {
+    const params = {
+      displayName: 'Title',
+      regexp: /^[a-zA-Z]+$/g,
+    };
+    const result = field.text(params);
+    expect(result.kind).toEqual('text');
+    expect(result.name).toEqual(params.displayName);
+    expect(result.description).toBeUndefined();
+    expect(result.required).toBeUndefined();
+    expect(result.isUnique).toBeUndefined();
+    expect(result.textSizeLimitValidation).toBeUndefined();
+    expect(result.patternMatchValidation).toEqual({
+      regexp: {
+        pattern: '^[a-zA-Z]+$',
+        flags: 'g',
       },
     });
   });
@@ -65,6 +85,35 @@ describe('field.textArea', () => {
         min: 10,
         max: 5000,
       },
+      regexp: /^[\w\s\d.,!?]+$/g,
+    };
+    const result = field.textArea(params);
+    expect(result.kind).toEqual('textArea');
+    expect(result.name).toEqual(params.displayName);
+    expect(result.description).toEqual(params.description);
+    expect(result.required).toEqual(params.required);
+    expect(result.textSizeLimitValidation).toEqual({
+      textSize: {
+        min: params.length.min,
+        max: params.length.max,
+      },
+    });
+    expect(result.patternMatchValidation).toEqual({
+      regexp: {
+        pattern: '^[\\w\\s\\d.,!?]+$',
+        flags: 'g',
+      },
+    });
+  });
+  it('should return a textArea field with the correct properties', () => {
+    const params = {
+      displayName: 'Content',
+      description: 'The content of the post',
+      required: true,
+      length: {
+        min: 10,
+        max: 5000,
+      },
       regexp: /^[\w\s\d.,!?]+$/,
     };
     const result = field.textArea(params);
@@ -80,8 +129,8 @@ describe('field.textArea', () => {
     });
     expect(result.patternMatchValidation).toEqual({
       regexp: {
-        pattern: params.regexp.source,
-        flags: params.regexp.flags ? params.regexp.flags : null,
+        pattern: '^[\\w\\s\\d.,!?]+$',
+        flags: null,
       },
     });
   });
@@ -682,5 +731,36 @@ describe('field.custom', () => {
     expect(result.description).toEqual(params.description);
     expect(result.required).toEqual(params.required);
     expect(result.field).toEqual(params.field);
+  });
+});
+
+describe('field.iframe', () => {
+  it('should return an iframe field with the correct properties', () => {
+    const params = {
+      displayName: 'Video',
+      description: 'The video of the post',
+      required: true,
+      iframeUrl: 'https://example.com',
+    };
+    const result = field.iframe(params);
+    expect(result.kind).toEqual('iframe');
+    expect(result.name).toEqual(params.displayName);
+    expect(result.description).toEqual(params.description);
+    expect(result.required).toEqual(params.required);
+    expect(result.iframeUrl).toEqual(params.iframeUrl);
+  });
+
+  it('should return an iframe field with default values when optional parameters are not provided', () => {
+    const params = {
+      displayName: 'Video',
+      required: false,
+      iframeUrl: 'https://example.com',
+    };
+    const result = field.iframe(params);
+    expect(result.kind).toEqual('iframe');
+    expect(result.name).toEqual(params.displayName);
+    expect(result.description).toBeUndefined();
+    expect(result.required).toEqual(params.required);
+    expect(result.iframeUrl).toEqual(params.iframeUrl);
   });
 });
