@@ -1,0 +1,93 @@
+{
+  "apiFields": [
+    {
+      "fieldId": "title",
+      "idValue": "nd57pmxgud",
+      "kind": "text",
+      "name": "記事のタイトル",
+      "description": "100文字以内で記事のタイトルを入力してください。",
+      "required": true,
+      "textSizeLimitValidation": {
+        "textSize": {
+          "min": 1,
+          "max": 100
+        }
+      }
+    },
+    {
+      "fieldId": "contents",
+      "customFieldCreatedAtList": [
+        "2023-10-27T13:17:06.836Z",
+        "2023-10-27T13:17:06.976Z",
+        "2023-10-27T13:17:06.652Z"
+      ],
+      "kind": "repeater",
+      "name": "記事の本文",
+      "description": "フィールドを追加することで、記事の本文を入力できます。",
+      "required": true
+    },
+    {
+      "fieldId": "thumbnail",
+      "kind": "media",
+      "name": "サムネイル",
+      "description": "記事のサムネイル画像をアップロードできます。1200×630pxの画像を推奨します。",
+      "required": true
+    }
+  ],
+  "customFields": [
+    {
+      "name": "本文：HTML",
+      "fieldId": "html",
+      "fields": [
+        {
+          "idValue": "r61v56fa3n",
+          "fieldId": "html",
+          "kind": "textArea",
+          "name": "本文：HTML",
+          "description": "HTMLで記事の本文を入力できます。",
+          "required": true
+        }
+      ],
+      "createdAt": "2023-10-27T13:17:06.836Z",
+      "updatedAt": "2023-10-27T13:17:06.836Z",
+      "viewerGroup": "yna",
+      "position": [["r61v56fa3n"]]
+    },
+    {
+      "name": "本文：リッチエディター",
+      "fieldId": "richEditor",
+      "fields": [
+        {
+          "idValue": "tgtgn3vnxp",
+          "fieldId": "html",
+          "kind": "richEditorV2",
+          "name": "本文：リッチエディター",
+          "description": "リッチエディターで記事の本文を入力できます。",
+          "required": true
+        }
+      ],
+      "createdAt": "2023-10-27T13:17:06.976Z",
+      "updatedAt": "2023-10-27T13:17:06.976Z",
+      "viewerGroup": "5vf",
+      "position": [["tgtgn3vnxp"]]
+    },
+    {
+      "name": "ギャラリー",
+      "fieldId": "gallery",
+      "fields": [
+        {
+          "idValue": "g2kgmhflpc",
+          "fieldId": "images",
+          "kind": "mediaList",
+          "name": "ギャラリー",
+          "description": "複数の画像をアップロードできます。",
+          "required": true
+        }
+      ],
+      "createdAt": "2023-10-27T13:17:06.652Z",
+      "updatedAt": "2023-10-27T13:17:06.652Z",
+      "viewerGroup": "p5r",
+      "position": [["g2kgmhflpc"]]
+    }
+  ]
+}

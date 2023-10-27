@@ -2,7 +2,7 @@ import {
   MicroCMSApiSchema,
   MicroCMSApiSchemaCustomFieldType,
   MicroCMSCustomFieldType,
-} from 'microcms-field-types';
+} from 'microcms-schema-types';
 import {
   CreateBooleanFieldResult,
   CreateCustomFieldResult,
@@ -38,48 +38,6 @@ type CreateFieldResult =
   | CreateIframeFieldResult
   | CreateRepeaterFieldResult
   | CreateCustomFieldResult;
-
-//////////////////////////
-//////////////////////////
-// CustomFieldSchema
-//////////////////////////
-//////////////////////////
-type CreateCustomFieldParams = Omit<
-  MicroCMSApiSchemaCustomFieldType,
-  'createdAt' | 'updatedAt' | 'position' | 'viewerGroup' | 'fields'
-> & {
-  fields: {
-    [FieldId in string]: Exclude<CreateFieldResult, CreateCustomFieldResult>;
-  };
-};
-
-const createCustomField = (
-  params: CreateCustomFieldParams,
-): MicroCMSApiSchemaCustomFieldType => {
-  const random = Math.floor(Math.random() * 1000);
-  const date = new Date();
-  date.setMilliseconds(random);
-  const at = date.toISOString();
-
-  const fields: MicroCMSCustomFieldType[] = Object.entries(params.fields).map(
-    ([fieldId, field]) => {
-      return {
-        idValue: generateId(),
-        fieldId,
-        ...field,
-      };
-    },
-  );
-
-  return {
-    ...params,
-    createdAt: at,
-    updatedAt: at,
-    viewerGroup: generateId(3),
-    fields,
-    position: [fields.map((field) => field.idValue)],
-  };
-};
 
 //////////////////////////
 //////////////////////////
@@ -130,7 +88,50 @@ const createApiSchema = (
   };
 };
 
+//////////////////////////
+//////////////////////////
+// CustomFieldSchema
+//////////////////////////
+//////////////////////////
+type CreateCustomFieldParams = Omit<
+  MicroCMSApiSchemaCustomFieldType,
+  'createdAt' | 'updatedAt' | 'position' | 'viewerGroup' | 'fields'
+> & {
+  fields: {
+    [FieldId in string]: Exclude<CreateFieldResult, CreateCustomFieldResult>;
+  };
+};
+
+const createCustomField = (
+  params: CreateCustomFieldParams,
+): MicroCMSApiSchemaCustomFieldType => {
+  const random = Math.floor(Math.random() * 1000);
+  const date = new Date();
+  date.setMilliseconds(random);
+  const at = date.toISOString();
+
+  const fields: MicroCMSCustomFieldType[] = Object.entries(params.fields).map(
+    ([fieldId, field]) => {
+      return {
+        idValue: generateId(),
+        fieldId,
+        ...field,
+      };
+    },
+  );
+
+  return {
+    fieldId: params.fieldId,
+    name: params.name,
+    createdAt: at,
+    updatedAt: at,
+    viewerGroup: generateId(3),
+    fields,
+    position: [fields.map((field) => field.idValue)],
+  };
+};
+
 export default {
-  custom: createCustomField,
   api: createApiSchema,
+  custom: createCustomField,
 };

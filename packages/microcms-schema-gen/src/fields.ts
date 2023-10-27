@@ -16,21 +16,25 @@ import {
   MicroCMSCustomField,
   MicroCMSApiSchemaCustomFieldType,
   RichEditorV2Option,
-} from 'microcms-field-types';
+  MicroCMSApiFieldType,
+} from 'microcms-schema-types';
 import { generateId } from './utils';
+
+type CreateFieldParams<
+  T extends MicroCMSApiFieldType,
+  K extends Exclude<keyof T, 'fieldId' | 'kind' | 'name'> = never,
+> = Omit<T, 'fieldId' | 'kind' | 'name' | K> & {
+  displayName: string;
+};
 
 //////////////////////////
 //////////////////////////
 // TextField
 //////////////////////////
 //////////////////////////
-export type CreateTextFieldParams = Omit<
+export type CreateTextFieldParams = CreateFieldParams<
   MicroCMSTextFiled,
-  | 'fieldId'
-  | 'kind'
-  | 'idValue'
-  | 'textSizeLimitValidation'
-  | 'patternMatchValidation'
+  'idValue' | 'textSizeLimitValidation' | 'patternMatchValidation'
 > & {
   /**
    * 文字数を制限する
@@ -56,7 +60,7 @@ const createTextField = (
   return {
     idValue,
     kind: 'text',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     isUnique: params.isUnique,
@@ -84,9 +88,9 @@ const createTextField = (
 // TextAreaField
 //////////////////////////
 //////////////////////////
-export type CreateTextAreaFieldParams = Omit<
+export type CreateTextAreaFieldParams = CreateFieldParams<
   MicroCMSTextAreaField,
-  'fieldId' | 'kind' | 'textSizeLimitValidation' | 'patternMatchValidation'
+  'textSizeLimitValidation' | 'patternMatchValidation'
 > & {
   /**
    * 文字数を制限する
@@ -110,7 +114,7 @@ const createTextAreaField = (
   const { length, regexp } = params;
   return {
     kind: 'textArea',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     textSizeLimitValidation: length
@@ -138,9 +142,9 @@ const createTextAreaField = (
 //////////////////////////
 //////////////////////////
 
-export type CreateRichEditorV2FieldParams = Omit<
+export type CreateRichEditorV2FieldParams = CreateFieldParams<
   MicroCMSRichEditorV2Field,
-  'fieldId' | 'kind' | 'customClassList' | 'richEditorV2Options'
+  'customClassList' | 'richEditorV2Options'
 > & {
   /**
    * ツールバーの編集
@@ -175,7 +179,7 @@ const createRichEditorV2Field = (
   ];
   return {
     kind: 'richEditorV2',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     richEditorV2Options: richEditorV2Options
@@ -195,9 +199,9 @@ const createRichEditorV2Field = (
 // MediaField
 //////////////////////////
 //////////////////////////
-export type CreateMediaFieldParams = Omit<
+export type CreateMediaFieldParams = CreateFieldParams<
   MicroCMSMediaField,
-  'fieldId' | 'kind' | 'imageSizeValidation'
+  'imageSizeValidation'
 > & {
   /**
    * 画像のサイズ制限
@@ -216,7 +220,7 @@ const createMediaField = (
   const { size } = params;
   return {
     kind: 'media',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     imageSizeValidation: size
@@ -235,9 +239,9 @@ const createMediaField = (
 // MediaListField
 //////////////////////////
 //////////////////////////
-export type CreateMediaListFieldParams = Omit<
+export type CreateMediaListFieldParams = CreateFieldParams<
   MicroCMSMediaListField,
-  'fieldId' | 'kind' | 'imageSizeValidation' | 'mediaListLayout'
+  'imageSizeValidation' | 'mediaListLayout'
 > & {
   /**
    * 画像のサイズ制限
@@ -265,7 +269,7 @@ const createMediaListField = (
   const { size, layout } = params;
   return {
     kind: 'mediaList',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     imageSizeValidation: size
@@ -285,7 +289,7 @@ const createMediaListField = (
 // DateField
 //////////////////////////
 //////////////////////////
-export type CreateDateFieldParams = Omit<MicroCMSDateField, 'fieldId' | 'kind'>;
+export type CreateDateFieldParams = CreateFieldParams<MicroCMSDateField>;
 export type CreateDateFieldResult = Omit<MicroCMSDateField, 'fieldId'>;
 
 const createDateField = (
@@ -293,7 +297,7 @@ const createDateField = (
 ): CreateDateFieldResult => {
   return {
     kind: 'date',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     dateFormat: params.dateFormat,
@@ -305,9 +309,9 @@ const createDateField = (
 // BooleanField
 //////////////////////////
 //////////////////////////
-export type CreateBooleanFieldParams = Omit<
+export type CreateBooleanFieldParams = CreateFieldParams<
   MicroCMSBooleanField,
-  'fieldId' | 'kind' | 'booleanInitialValue'
+  'booleanInitialValue'
 > & {
   initialValue?: boolean;
 };
@@ -319,7 +323,7 @@ const createBooleanField = (
   const { initialValue } = params;
   return {
     kind: 'boolean',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     booleanInitialValue: initialValue,
@@ -331,9 +335,9 @@ const createBooleanField = (
 // SelectField
 //////////////////////////
 //////////////////////////
-export type CreateSelectFieldParams<T extends string> = Omit<
+export type CreateSelectFieldParams<T extends string> = CreateFieldParams<
   MicroCMSSelectField,
-  'fieldId' | 'kind' | 'selectItems' | 'selectInitialValue'
+  'selectItems' | 'selectInitialValue' | 'multipleSelect'
 > & {
   /**
    * セレクトフィールドの選択肢
@@ -341,6 +345,7 @@ export type CreateSelectFieldParams<T extends string> = Omit<
    */
   selectItems: T[];
   selectInitialValue?: T[];
+  multiple?: boolean;
 };
 export type CreateSelectFieldResult = Omit<MicroCMSSelectField, 'fieldId'>;
 
@@ -356,13 +361,14 @@ const createSelectField = <T extends string>(
   });
   return {
     kind: 'select',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     selectItems,
     selectInitialValue: selectItems
       .filter((item) => selectInitialValue?.includes(item.value))
       .map((item) => item.id),
+    multipleSelect: params.multiple,
   } satisfies CreateSelectFieldResult;
 };
 
@@ -371,7 +377,7 @@ const createSelectField = <T extends string>(
 // FileField
 //////////////////////////
 //////////////////////////
-export type CreateFileFieldParams = Omit<MicroCMSFileField, 'fieldId' | 'kind'>;
+export type CreateFileFieldParams = CreateFieldParams<MicroCMSFileField>;
 export type CreateFileFieldResult = Omit<MicroCMSFileField, 'fieldId'>;
 
 const createFileField = (
@@ -379,7 +385,7 @@ const createFileField = (
 ): CreateFileFieldResult => {
   return {
     kind: 'file',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
   } satisfies CreateFileFieldResult;
@@ -390,9 +396,9 @@ const createFileField = (
 // NumberField
 //////////////////////////
 //////////////////////////
-export type CreateNumberFieldParams = Omit<
+export type CreateNumberFieldParams = CreateFieldParams<
   MicroCMSNumberField,
-  'fieldId' | 'kind' | 'numberSizeLimitValidation'
+  'numberSizeLimitValidation'
 > & {
   /**
    * 数値を制限する
@@ -411,7 +417,7 @@ const createNumberField = (
   const { range } = params;
   return {
     kind: 'number',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     numberSizeLimitValidation: range
@@ -430,9 +436,9 @@ const createNumberField = (
 // RelationField
 //////////////////////////
 //////////////////////////
-export type CreateRelationFieldParams = Omit<
+export type CreateRelationFieldParams = CreateFieldParams<
   MicroCMSRelationField,
-  'fieldId' | 'kind' | 'referenceDisplayItem'
+  'referenceDisplayItem'
 >;
 export type CreateRelationFieldResult = Omit<MicroCMSRelationField, 'fieldId'>;
 
@@ -441,7 +447,7 @@ const createRelationField = (
 ): CreateRelationFieldResult => {
   return {
     kind: 'relation',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
   } satisfies CreateRelationFieldResult;
@@ -452,12 +458,9 @@ const createRelationField = (
 // RelationListField
 //////////////////////////
 //////////////////////////
-export type CreateRelationListFieldParams = Omit<
+export type CreateRelationListFieldParams = CreateFieldParams<
   MicroCMSRelationListField,
-  | 'fieldId'
-  | 'kind'
-  | 'referenceDisplayItem'
-  | 'relationListCountLimitValidation'
+  'referenceDisplayItem' | 'relationListCountLimitValidation'
 > & {
   /**
    * 複数コンテンツ参照の数を制限する
@@ -479,7 +482,7 @@ const createRelationListField = (
   const { limit } = params;
   return {
     kind: 'relationList',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     relationListCountLimitValidation: limit
@@ -498,10 +501,7 @@ const createRelationListField = (
 // IframeField
 //////////////////////////
 //////////////////////////
-export type CreateIframeFieldParams = Omit<
-  MicroCMSIframeField,
-  'fieldId' | 'kind'
->;
+export type CreateIframeFieldParams = CreateFieldParams<MicroCMSIframeField>;
 export type CreateIframeFieldResult = Omit<MicroCMSIframeField, 'fieldId'>;
 
 const createIframeField = (
@@ -509,7 +509,7 @@ const createIframeField = (
 ): CreateIframeFieldResult => {
   return {
     kind: 'iframe',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     iframeUrl: params.iframeUrl,
@@ -521,12 +521,9 @@ const createIframeField = (
 // RepeaterField
 //////////////////////////
 //////////////////////////
-export type CreateRepeaterFieldParams = Omit<
+export type CreateRepeaterFieldParams = CreateFieldParams<
   MicroCMSRepeaterField,
-  | 'fieldId'
-  | 'kind'
-  | 'customFieldCreatedAtList'
-  | 'repeaterCountLimitValidation'
+  'customFieldCreatedAtList' | 'repeaterCountLimitValidation'
 > & {
   fields: MicroCMSApiSchemaCustomFieldType[];
   /**
@@ -551,7 +548,7 @@ const createRepeaterField = (
   const { limit } = params;
   return {
     kind: 'repeater',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     fields: params.fields,
@@ -571,9 +568,9 @@ const createRepeaterField = (
 // CustomField
 //////////////////////////
 //////////////////////////
-export type CreateCustomFieldParams = Omit<
+export type CreateCustomFieldParams = CreateFieldParams<
   MicroCMSCustomField,
-  'fieldId' | 'kind' | 'customFieldCreatedAt' | 'customFieldDisplayItem'
+  'customFieldCreatedAt' | 'customFieldDisplayItem'
 > & {
   field: [MicroCMSApiSchemaCustomFieldType];
 };
@@ -589,7 +586,7 @@ const crateCustomField = (
 ): CreateCustomFieldResult => {
   return {
     kind: 'custom',
-    name: params.name,
+    name: params.displayName,
     description: params.description,
     required: params.required,
     field: params.field,

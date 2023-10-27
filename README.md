@@ -1,22 +1,8 @@
-# npm-package-starter
+# microcms-schema-toolkit
 
-Repositories that can be used as a starter in creating npm package.
+[microCMS](https://microcms.io/)のスキーマを管理するためのツールキットです。
 
-| dependencies | version |
-| ------------ | ------- |
-| pnpm         |  7.5.0  |
-| typescript   |  4.8.4  |
+## Packages
 
-## Usage
-
-Click "**Use this template**" here or **clone** this repository.
-
-###  Preset commands
-
-### build
-
-Compile `/src/index.ts` as an entry file.
-
-```shell
-pnpm build
-```
+- [microcms-schema-gen](./packages/microcms-schema-gen/README.md)
+- [microcms-schema-types](./packages/microcms-schema-types/README.md)

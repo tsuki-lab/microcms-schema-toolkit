@@ -1,7 +1,7 @@
 {
   "name": "microcms-schema-gen",
   "version": "1.0.0",
-  "description": "A tool for automatically generating schema definitions for microCMS.",
+  "description": "A tool for generating schema definitions for microCMS.",
   "main": "index.js",
   "scripts": {
     "example": "tsx example/index.ts",
@@ -18,7 +18,7 @@
   "author": "hanetsuki<me@tsuki-lab.net>",
   "license": "MIT",
   "dependencies": {
-    "microcms-field-types": "workspace:*"
+    "microcms-schema-types": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.8.6",
