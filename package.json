@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "lint": "turbo lint",
-    "all-publish": "turbo publish"
+    "lint": "turbo lint"
   },
   "author": "hanetsuki<me@tsuki-lab.net>",
   "packageManager": "pnpm@8.9.0",
