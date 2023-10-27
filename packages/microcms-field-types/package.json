@@ -9,7 +9,8 @@
   "scripts": {
     "build": "tsc --declaration --emitDeclarationOnly --declarationDir './dist'",
     "lint": "eslint src --ext .ts",
-    "fix": "pnpm lint --fix"
+    "fix": "pnpm lint --fix",
+    "publish": "pnpm publish"
   },
   "keywords": [
     "microcms",

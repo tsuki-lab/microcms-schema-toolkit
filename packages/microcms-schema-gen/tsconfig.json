@@ -6,6 +6,6 @@
     "strict": true,
     "lib": ["ES2020", "dom"]
   },
-  "include": ["./src/**/*", "./build.js", "./vitest.config.ts"],
+  "include": ["./src/**/*", "./build.js"],
   "exclude": ["node_modules"]
 }
