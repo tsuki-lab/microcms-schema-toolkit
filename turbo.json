@@ -8,7 +8,7 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
-    "all-publish": {
+    "publish": {
       "dependsOn": ["^publish"]
     },
     "dev": {
