@@ -22,7 +22,7 @@ import {
 } from './fields';
 import { generateId } from './utils';
 
-type CreateFieldResult =
+export type CreateFieldResult =
   | CreateTextFieldResult
   | CreateTextAreaFieldResult
   | CreateRichEditorV2FieldResult
