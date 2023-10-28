@@ -4,7 +4,7 @@ import field, {
   CreateMediaListFieldParams,
   CreateRepeaterFieldParams,
   CreateRichEditorV2FieldParams,
-} from './fields';
+} from '../src/fields';
 
 describe('field.text', () => {
   it('should return a text field with the correct properties', () => {

@@ -15,17 +15,5 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error'],
     curly: ['error', 'multi-line'],
   },
-  overrides: [
-    {
-      files: ['**/*.js'],
-      rules: {
-        '@typescript-eslint/no-var-requires': 'off',
-        '@typescript-eslint/ban-ts-comment': 'off',
-      },
-    },
-  ],
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: './tsconfig.json',
-  },
 };

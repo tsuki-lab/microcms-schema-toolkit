@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import schema, { CreateFieldResult } from './schema';
+import schema, { CreateFieldResult } from '../src/schema';
 
 describe('schema.api', () => {
   it('should return an object with apiFields and customFields properties', () => {
