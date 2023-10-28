@@ -15,7 +15,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version-file: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node-version }}
       - name: Setup
         run: pmpm i --frozen-lockfile
       - name: ESLint
