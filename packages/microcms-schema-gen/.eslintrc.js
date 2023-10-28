@@ -11,7 +11,6 @@ module.exports = {
   rules: {
     'import/order': ['warn', { alphabetize: { order: 'asc' } }],
     'no-duplicate-imports': 'warn',
-    '@typescript-eslint/restrict-template-expressions': ['warn'],
     '@typescript-eslint/no-unused-vars': ['error'],
     curly: ['error', 'multi-line'],
   },

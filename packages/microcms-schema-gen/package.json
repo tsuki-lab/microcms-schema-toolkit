@@ -13,7 +13,10 @@
     "build": "run-p build:*",
     "build:esbuild": "node build.js",
     "build:types": "tsc --declaration --emitDeclarationOnly --declarationDir './dist'",
+    "lint": "eslint --ext .ts .",
+    "fix": "pnpm lint --fix",
     "test": "vitest run",
+    "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
   },
   "keywords": [

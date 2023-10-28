@@ -1,11 +1,12 @@
 {
-  "name": "microcms-schema-toolkit",
-  "version": "0.1.0",
-  "description": "microCMS schema toolkit",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "fix": "turbo fix",
+    "test": "turbo test",
+    "test:watch": "turbo test:watch",
+    "test:coverage": "turbo test:coverage"
   },
   "author": "hanetsuki<me@tsuki-lab.net>",
   "packageManager": "pnpm@8.9.0",

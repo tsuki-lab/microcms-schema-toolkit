@@ -1,0 +1,23 @@
+name: "CI"
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["lts/*"]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.4.0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ${{ matrix.node-version }}
+      - name: Setup
+        run: pmpm i --frozen-lockfile
+      - name: ESLint
+        run: pmpm run lint
+      - name: Run Vitest
+        run: pmpm run test:coverage

@@ -5,12 +5,16 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
+    "lint": {},
+    "fix": {},
     "dev": {
       "cache": false,
       "persistent": true
-    }
+    },
+    "test": {},
+    "test:watch": {
+      "cache": false
+    },
+    "test:coverage": {}
   }
 }
