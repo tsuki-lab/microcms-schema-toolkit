@@ -12,13 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.4.0
+
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version-file: ".node-version"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.4.0
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: pmpm install
@@ -30,7 +31,6 @@ jobs:
         run: pmpm run test:coverage
 
       - name: Report Coverage
-        if: always()
         uses: davelosert/vitest-coverage-report-action@v2
         with:
           name: microcms-schema-gen
