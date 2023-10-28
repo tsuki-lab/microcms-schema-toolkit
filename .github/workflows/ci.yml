@@ -34,5 +34,6 @@ jobs:
         uses: davelosert/vitest-coverage-report-action@v2
         with:
           name: microcms-schema-gen
+          vite-config-path: "./packages/microcms-schema-gen/vitest.config.ts"
           json-summary-path: "./packages/microcms-schema-gen/coverage/coverage-summary.json"
           json-final-path: "./packages/microcms-schema-gen/coverage/coverage-final.json"
