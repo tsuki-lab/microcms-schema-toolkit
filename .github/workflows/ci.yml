@@ -43,22 +43,22 @@ jobs:
         uses: davelosert/vitest-coverage-report-action@v2
         with:
           name: microcms-schema-gen
-          vite-config-path: "./packages/microcms-schema-gen/vitest.config.ts"
-          json-summary-path: "./packages/microcms-schema-gen/coverage/coverage-summary.json"
-          json-final-path: "./packages/microcms-schema-gen/coverage/coverage-final.json"
+          vite-config-path: "./packages/gen/vitest.config.ts"
+          json-summary-path: "./packages/gen/coverage/coverage-summary.json"
+          json-final-path: "./packages/gen/coverage/coverage-final.json"
 
       - name: Create Coverage Badges
         uses: jaywcjlove/coverage-badges-cli@main
         with:
           style: flat
-          source: packages/microcms-schema-gen/coverage/coverage-summary.json
-          output: packages/microcms-schema-gen/coverage/badges.svg
+          source: packages/gen/coverage/coverage-summary.json
+          output: packages/gen/coverage/badges.svg
 
       - name: Upload test coverage artifact
         uses: actions/upload-pages-artifact@v2
         with:
           name: coverage
-          path: ./packages/microcms-schema-gen/coverage
+          path: ./packages/gen/coverage
 
   deploy:
     needs: ci

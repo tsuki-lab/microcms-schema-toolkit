@@ -2,7 +2,7 @@ import {
   MicroCMSApiSchema,
   MicroCMSApiSchemaCustomFieldType,
   MicroCMSCustomFieldType,
-} from 'microcms-schema-types';
+} from '../../types/dist';
 import {
   CreateBooleanFieldResult,
   CreateCustomFieldResult,
