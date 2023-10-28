@@ -1,6 +1,7 @@
 {
   "name": "microcms-schema-toolkit",
   "description": "microCMS schema toolkit",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "turbo dev",
