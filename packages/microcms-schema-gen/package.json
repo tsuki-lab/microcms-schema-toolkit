@@ -2,7 +2,12 @@
   "name": "microcms-schema-gen",
   "version": "1.0.0",
   "description": "A tool for generating schema definitions for microCMS.",
-  "main": "index.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "example": "tsx example/index.ts",
     "build": "run-p build:*",
