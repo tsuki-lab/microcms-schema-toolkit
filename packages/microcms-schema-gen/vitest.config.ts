@@ -6,6 +6,7 @@ export default defineConfig({
       provider: 'istanbul',
       all: true,
       include: ['src/**'],
+      reporter: ['text', 'json-summary', 'json'],
     },
   },
 });
