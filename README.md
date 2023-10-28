@@ -4,5 +4,5 @@
 
 ## Packages
 
-- [microcms-schema-gen](./packages/microcms-schema-gen/README.md)
-- [microcms-schema-types](./packages/microcms-schema-types/README.md)
+- [microcms-schema-gen](./packages/gen/README.md)
+- [microcms-schema-types](./packages/types/README.md)

@@ -1,6 +1,6 @@
 {
   "name": "microcms-schema-types",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "MicroCMS field types",
   "types": "./dist/index.d.ts",
   "files": [
@@ -26,5 +26,13 @@
     "typescript": "^5.2.2"
   },
   "author": "hanetsuki<me@tsuki-lab.net>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsuki-lab/microcms-schema-toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tsuki-lab/microcms-schema-toolkit/issues"
+  },
+  "homepage": "https://github.com/tsuki-lab/microcms-schema-toolkit/tree/main/packages/types#readme",
   "license": "MIT"
 }

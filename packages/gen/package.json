@@ -1,6 +1,6 @@
 {
   "name": "microcms-schema-gen",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A tool for generating schema definitions for microCMS.",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
@@ -25,7 +25,6 @@
     "typescript"
   ],
   "author": "hanetsuki<me@tsuki-lab.net>",
-  "license": "MIT",
   "dependencies": {
     "microcms-schema-types": "workspace:*"
   },
@@ -41,5 +40,14 @@
     "prettier": "^3.0.3",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsuki-lab/microcms-schema-toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tsuki-lab/microcms-schema-toolkit/issues"
+  },
+  "homepage": "https://github.com/tsuki-lab/microcms-schema-toolkit/tree/main/packages/gen#readme",
+  "license": "MIT"
 }
