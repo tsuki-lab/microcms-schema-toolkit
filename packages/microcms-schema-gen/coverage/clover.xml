@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1698422341643" clover="3.2.0">
-  <project timestamp="1698422341643" name="All files">
+<coverage generated="1698459597726" clover="3.2.0">
+  <project timestamp="1698459597726" name="All files">
     <metrics statements="70" coveredstatements="70" conditionals="28" coveredconditionals="28" methods="27" coveredmethods="27" elements="125" coveredelements="125" complexity="0" loc="70" ncloc="70" packages="1" files="3" classes="3"/>
     <file name="fields.ts" path="/Users/ktachizaki/repos/atelier/micrcoms-schema-toolkit/packages/microcms-schema-gen/src/fields.ts">
       <metrics statements="47" coveredstatements="47" conditionals="24" coveredconditionals="24" methods="19" coveredmethods="19"/>
