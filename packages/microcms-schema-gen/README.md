@@ -1,6 +1,7 @@
 # microCMS Schema Gen
 
 <a href="https://www.npmjs.com/package/microcms-schema-gen" target="_blank"><img src="https://img.shields.io/npm/v/microcms-schema-gen" /></a>
+<img src="https://tsuki-lab.github.io/microcms-schema-toolkit/badges.svg" />
 <img src="https://img.shields.io/npm/l/microcms-schema-gen" />
 
 # Getting Started
