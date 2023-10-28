@@ -15,6 +15,8 @@
     "test:watch": {
       "cache": false
     },
-    "test:coverage": {}
+    "test:coverage": {
+      "cache": false
+    }
   }
 }
