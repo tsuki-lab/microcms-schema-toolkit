@@ -57,7 +57,7 @@ jobs:
       - name: Upload test coverage artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          name: coverage/microcms-schema-gen
+          name: coverage
           path: ./packages/microcms-schema-gen/coverage
 
   deploy:
