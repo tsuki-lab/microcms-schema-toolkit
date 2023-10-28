@@ -1,6 +1,6 @@
 {
   "name": "microcms-schema-types",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MicroCMS field types",
   "types": "./dist/index.d.ts",
   "files": [

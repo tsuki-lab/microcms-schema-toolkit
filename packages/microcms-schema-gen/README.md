@@ -1,4 +1,7 @@
-# microcms-schema-gen
+# microCMS Schema Gen
+
+<a href="https://www.npmjs.com/package/microcms-schema-gen" target="_blank"><img src="https://img.shields.io/npm/v/microcms-schema-gen" /></a>
+<img src="https://img.shields.io/npm/l/microcms-schema-gen" />
 
 # Getting Started
 
@@ -59,9 +62,7 @@ Export to `schema.json`:
 
 ## schema
 
-### api
-
-**`schema.api()`**
+### `schema.api()`
 
 #### Parameters
 
@@ -69,9 +70,7 @@ Export to `schema.json`:
 | ------ | ------ | ----------- |
 | fields | object | フィールド  |
 
-### custom
-
-**`schema.custom()`**
+### `schema.custom()`
 
 #### Parameters
 
@@ -101,9 +100,7 @@ Export to `schema.json`:
 | repeater     | 作成済みのカスタムフィールドを複数選択し、繰り返し入力が可能です                              |
 | custom       | カスタムフィールドです。設定済みのカスタムフィールドを用いて入力ができます。                  |
 
-### text
-
-**`field.text()`**
+### `field.text()`
 
 #### Parameters
 
@@ -118,9 +115,7 @@ Export to `schema.json`:
 | length.max  | number   | 最大文字数                         |
 | regexp      | ?RegExp  | 特定のパターンのみ入力を許可する。 |
 
-### textArea
-
-**`field.textArea()`**
+### `field.textArea()`
 
 #### Parameters
 
@@ -134,9 +129,7 @@ Export to `schema.json`:
 | length.max  | number   | 最大文字数                         |
 | regexp      | ?RegExp  | 特定のパターンのみ入力を許可する。 |
 
-### richEditorV2
-
-**`field.richEditorV2()`**
+### `field.richEditorV2()`
 
 #### Parameters
 
@@ -148,9 +141,7 @@ Export to `schema.json`:
 | richEditorV2Options | ?('undo' \| 'redo' \| 'clean' \| 'customClass' \| 'link' \| 'image' \| 'oembedly' \| 'listOrdered' \| 'listBullet' \| 'horizontalRule' \| 'bold' \| 'headerOne' \| 'headerTwo' \| 'italic' \| 'blockquote' \| 'codeBlock' \| 'underline' \| 'strike' \| 'table' \| 'code' \| 'textAlign' \| 'headerThree' \| 'headerFour' \| 'headerFive' \| 'paragraph')[] | ツールバーの編集 |
 | customClassList     | { name: string; value: string; }[]                                                                                                                                                                                                                                                                                                                          | カスタムclass    |
 
-### media
-
-**`field.media()`**
+### `field.media()`
 
 #### Parameters
 
@@ -163,9 +154,7 @@ Export to `schema.json`:
 | size.width  | number   | 横幅                 |
 | size.height | number   | 縦幅                 |
 
-### mediaList
-
-**`field.mediaList()`**
+### `field.mediaList()`
 
 #### Parameters
 
@@ -179,9 +168,7 @@ Export to `schema.json`:
 | size.height | number                                                     | 縦幅                 |
 | layout      | ?('HORIZONTAL_SCROLL' \| 'GRID_2' \| 'GRID_3' \| 'GRID_4') | レイアウト           |
 
-### date
-
-**`field.date()`**
+### `field.date()`
 
 #### Parameters
 
@@ -192,9 +179,7 @@ Export to `schema.json`:
 | required    | ?boolean | 必須項目             |
 | dateFormat  | ?boolean | 日付のみを選択するか |
 
-### boolean
-
-**`field.boolean()`**
+### `field.boolean()`
 
 #### Parameters
 
@@ -205,9 +190,7 @@ Export to `schema.json`:
 | required     | ?string  | 必須項目    |
 | initialValue | ?boolean | 初期値      |
 
-### select
-
-**`field.select()`**
+### `field.select()`
 
 #### Parameters
 
@@ -220,9 +203,7 @@ Export to `schema.json`:
 | selectInitialValue | ?string[] | 初期値               |
 | multiple           | ?boolean  | 複数選択を許可するか |
 
-### file
-
-**`field.file()`**
+### `field.file()`
 
 #### Parameters
 
@@ -232,9 +213,7 @@ Export to `schema.json`:
 | description | ?string  | 説明文      |
 | required    | ?boolean | 必須項目    |
 
-### number
-
-**`field.number()`**
+### `field.number()`
 
 #### Parameters
 
@@ -247,9 +226,7 @@ Export to `schema.json`:
 | range.min   | number   | 最小値      |
 | range.max   | number   | 最大値      |
 
-### relation
-
-**`field.relation()`**
+### `field.relation()`
 
 #### Parameters
 
@@ -259,9 +236,7 @@ Export to `schema.json`:
 | description | ?string  | 説明文      |
 | required    | ?boolean | 必須項目    |
 
-### relationList
-
-**`field.relationList()`**
+### `field.relationList()`
 
 #### Parameters
 
@@ -274,9 +249,7 @@ Export to `schema.json`:
 | limit.max   | number   | 最大数      |
 | limit.min   | number   | 最小数      |
 
-### iframe
-
-**`field.iframe()`**
+### `field.iframe()`
 
 #### Parameters
 
@@ -287,9 +260,7 @@ Export to `schema.json`:
 | required    | ?boolean | 必須項目           |
 | iframeUrl   | string   | 拡張フィールド URL |
 
-### repeater
-
-**`field.repeater()`**
+### `field.repeater()`
 
 #### Parameters
 
@@ -303,9 +274,7 @@ Export to `schema.json`:
 | limit.max   | number                             | 最大数      |
 | limit.min   | number                             | 最小数      |
 
-### custom
-
-**`field.custom()`**
+### `field.custom()`
 
 #### Parameters
 
