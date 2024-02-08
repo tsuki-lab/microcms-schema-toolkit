@@ -26,6 +26,7 @@ export type MicroCMSCustomFieldType = Exclude<
 export type MicroCMSApiFieldType =
   | MicroCMSTextFiled
   | MicroCMSTextAreaField
+  | MicroCMSRichEditorField
   | MicroCMSRichEditorV2Field
   | MicroCMSMediaField
   | MicroCMSMediaListField
@@ -141,6 +142,81 @@ export type MicroCMSTextAreaField = {
     };
   };
 };
+
+/**
+ * 旧リッチエディタ
+ * @description 自由入力の複数行テキストです。リッチエディタによる編集が可能です。APIからHTMLが取得できます。
+ */
+export type MicroCMSRichEditorField = {
+  kind: 'richEditor';
+  /**
+   * フィールドID
+   * @description APIレスポンスのプロパティ名です。
+   */
+  fieldId: string;
+  /**
+   * 表示名
+   * @description コンテンツを入力する際に表示されます。
+   */
+  name: string;
+  /**
+   * 説明文
+   * @description 入稿画面に表示する説明文です。入稿者にとってわかりやすい説明を入力しましょう。
+   */
+  description?: string;
+  /**
+   * 必須項目
+   * @description 設定をONにすると入稿時の入力が必須となります。
+   */
+  required?: boolean;
+  /**
+   * 改行に<br>タグを用いる
+   * @description オンの場合は<br>タグで改行します。オフの場合は<p>タグで段落分けします。
+   */
+  richEditorMultiParagraph?: boolean;
+  /**
+   * 画像のレスポンスにwidthとheightを含む
+   * @description オンの場合は<img>タグにwidthとheightが含まれます。
+   */
+  richEditorImageSize?: boolean;
+  /**
+   * 装飾ボタン
+   * @description 使用可能な装飾ボタンを制限することができます。
+   */
+  richEditorOptions?: RichEditorOption[];
+};
+
+export type RichEditorOption =
+  | 'headerOne'
+  | 'headerTwo'
+  | 'headerThree'
+  | 'headerFour'
+  | 'headerFive'
+  | 'paragraph'
+  | 'sizeSmall'
+  | 'sizeNormal'
+  | 'sizeLarge'
+  | 'sizeHuge'
+  | 'bold'
+  | 'italic'
+  | 'underline'
+  | 'strike'
+  | 'code'
+  | 'background'
+  | 'color'
+  | 'align'
+  | 'blockquote'
+  | 'codeBlock'
+  | 'listOrdered'
+  | 'listBullet'
+  | 'indentRemove'
+  | 'indentAdd'
+  | 'scriptSub'
+  | 'scriptSuper'
+  | 'link'
+  | 'image'
+  | 'oembedly'
+  | 'clean';
 
 /**
  * リッチエディタ
