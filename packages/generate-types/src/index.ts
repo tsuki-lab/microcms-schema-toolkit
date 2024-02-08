@@ -4,54 +4,29 @@ import fs from 'fs';
 import path from 'path';
 import { isKebabCase, pascalCase } from './utils';
 import pluralize from 'pluralize';
+import {
+  MicroCMSApiFieldType,
+  MicroCMSApiSchema,
+  MicroCMSCustomField,
+  MicroCMSRepeaterField,
+  MicroCMSSelectField,
+} from 'microcms-schema-types';
 
-type MicroCMSFieldType = {
-  fieldId: string;
-  name: string;
-  kind:
-    | 'text'
-    | 'textArea'
-    | 'number'
-    | 'richEditor'
-    | 'select'
-    | 'custom'
-    | 'repeater'
-    | 'media'
-    | 'file'
-    | 'relation'
-    | 'relationList'
-    | 'date';
-  required: boolean;
-  selectItems?: { value: string }[];
-  multipleSelect?: boolean;
-  customFieldCreatedAt?: string;
-  customFieldCreatedAtList?: string[];
-};
-
-type MicroCMSSchemaType = {
-  apiFields: MicroCMSFieldType[];
-  customFields: {
-    createdAt: string;
-    fieldId: string;
-    fields: MicroCMSFieldType[];
-  }[];
-};
-
-export const convertSchema = (name: string, schema: MicroCMSSchemaType) => {
+export const convertSchema = (name: string, schema: MicroCMSApiSchema) => {
   const { customFields, apiFields } = schema;
   const customs = Object.fromEntries(
     customFields.map(({ fieldId, createdAt }) => [createdAt, fieldId])
   );
-  const getKindType = (fields: MicroCMSFieldType) => {
+  const getKindType = (fields: MicroCMSApiFieldType) => {
     const { kind } = fields;
-    const types = {
+    const types: Record<MicroCMSApiFieldType['kind'], () => string> = {
       text: () => 'string',
       textArea: () => 'string',
       richEditor: () => 'string',
       richEditorV2: () => 'string',
       number: () => 'number',
       select: () => {
-        const { selectItems: list, multipleSelect } = fields;
+        const { selectItems: list, multipleSelect } = fields as MicroCMSSelectField;
         const str = list!.reduce((a, rep, index) => `${a}${index ? ' | ' : ''}'${rep.value}'`, '');
         if (multipleSelect) return list!.length > 1 ? `(${str})[]` : `${str}[]`;
         return `[${str}]`;
@@ -61,10 +36,15 @@ export const convertSchema = (name: string, schema: MicroCMSSchemaType) => {
       boolean: () => 'boolean',
       date: () => 'string',
       media: () => 'MicroCMSImage',
+      mediaList: () => 'MicroCMSImage[]',
+      iframe: () => 'unknown',
       file: () => '{ url: string }',
-      custom: () => `${name}CustomField${pascalCase(customs[fields.customFieldCreatedAt!])}`,
+      custom: () => {
+        const { customFieldCreatedAt } = fields as MicroCMSCustomField;
+        return `${name}CustomField${pascalCase(customs[customFieldCreatedAt!])}`;
+      },
       repeater: () => {
-        const { customFieldCreatedAtList: list } = fields;
+        const { customFieldCreatedAtList: list } = fields as MicroCMSRepeaterField;
         const str = list!.reduce(
           (a, rep, index) =>
             `${a}${index ? ' | ' : ''}${name}CustomField${pascalCase(customs[rep])}`,
@@ -73,12 +53,12 @@ export const convertSchema = (name: string, schema: MicroCMSSchemaType) => {
         return list!.length > 1 ? `(${str})[]` : `${str}[]`;
       },
     };
-    return types[kind]?.() || 'any';
+    return types[kind]?.() || 'unknown';
   };
   const getDoc = (field: { name: string }) => {
     return `/**\n * ${field.name}\n */`;
   };
-  const getFields = (fields: MicroCMSFieldType[]) => {
+  const getFields = (fields: MicroCMSApiFieldType[]) => {
     return fields.map((fields) => {
       const { fieldId, required } = fields;
       const isKebabFieldId = isKebabCase(fieldId);
@@ -87,7 +67,7 @@ export const convertSchema = (name: string, schema: MicroCMSSchemaType) => {
       }: ${getKindType(fields)}`;
     });
   };
-  const getCustomFields = (fieldId: string, fields: MicroCMSFieldType[]) => {
+  const getCustomFields = (fieldId: string, fields: MicroCMSApiFieldType[]) => {
     return [`${getDoc({ name: 'fieldId' })}\nfieldId: '${fieldId}'`, ...getFields(fields)];
   };
 
@@ -160,7 +140,7 @@ export type MicroCMSRelation<T> = T & MicroCMSListContent;\n`;
     const singleName = pluralize.singular(name);
     const typeName = pascalCase(singleName);
     const apiSchema = fs.readFileSync(path.resolve(dir, file));
-    const s = convertSchema(typeName, JSON.parse(apiSchema.toString()) as MicroCMSSchemaType);
+    const s = convertSchema(typeName, JSON.parse(apiSchema.toString()) as MicroCMSApiSchema);
 
     const schema = outSchema(typeName, s);
     const isRelation = /MicroCMSRelation/.test(schema);
