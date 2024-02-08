@@ -25,10 +25,8 @@
     "typescript"
   ],
   "author": "hanetsuki<me@tsuki-lab.net>",
-  "dependencies": {
-    "microcms-schema-types": "workspace:*"
-  },
   "devDependencies": {
+    "microcms-schema-types": "workspace:*",
     "@types/node": "^20.8.6",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@vitest/coverage-istanbul": "^0.34.6",

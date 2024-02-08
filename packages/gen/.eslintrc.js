@@ -15,4 +15,12 @@ module.exports = {
     curly: ['error', 'multi-line'],
   },
   parser: '@typescript-eslint/parser',
+  overrides: [
+    {
+      files: ['*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+  ],
 };

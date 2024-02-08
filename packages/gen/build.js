@@ -1,10 +1,8 @@
 /* eslint-env node */
 
-// @ts-check
 const { build } = require('esbuild');
 const packageJson = require('./package.json');
 
-// @ts-ignore Checked Object keys
 const dependencies = Object.hasOwnProperty.call(packageJson, 'dependencies')
   ? packageJson.dependencies
   : {};

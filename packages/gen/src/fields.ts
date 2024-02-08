@@ -17,7 +17,7 @@ import {
   MicroCMSApiSchemaCustomFieldType,
   RichEditorV2Option,
   MicroCMSApiFieldType,
-} from '../../types/dist';
+} from 'microcms-schema-types';
 import { generateId } from './utils';
 
 type CreateFieldParams<
