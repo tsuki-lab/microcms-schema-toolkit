@@ -10,10 +10,7 @@
     "fix": "turbo fix",
     "test": "turbo test",
     "test:watch": "turbo test:watch",
-    "test:coverage": "turbo test:coverage",
-    "publish:gen": "pnpm publish ./packages/gen",
-    "publish:types": "pnpm publish ./packages/types",
-    "publish:generate-types": "pnpm publish ./packages/generate-types"
+    "test:coverage": "turbo test:coverage"
   },
   "author": "hanetsuki<me@tsuki-lab.net>",
   "packageManager": "pnpm@8.9.0",
