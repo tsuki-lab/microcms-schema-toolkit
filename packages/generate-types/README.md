@@ -1,13 +1,11 @@
-# microcms-generate-types
+# microCMS Generate Types
+
+<a href="https://www.npmjs.com/package/microcms-schema-gen" target="_blank"><img src="https://img.shields.io/npm/v/microcms-generate-types" /></a>
+<img src="https://img.shields.io/npm/l/microcms-generate-types" />
 
 Convert [MicroCMS](https://microcms.io/) schema to TypeScript type definitions.
 
-## Description
-
-This repository is a fork of "[SoraKumo001/microcms-typescript](https://github.com/SoraKumo001/microcms-typescript)" with personal improvements.
-
-### Features
-
+This package takes a lot of inspiration from "[SoraKumo001/microcms-typescript](https://github.com/SoraKumo001/microcms-typescript)".
 
 ## Install
 
@@ -15,15 +13,14 @@ This repository is a fork of "[SoraKumo001/microcms-typescript](https://github.c
 npm install -g microcms-generate-types
 ```
 
-
 ## Usage
 
 ```shell
 microcms-generate-types src-dir [dist-dir]
 ```
 
-Use the file name as the type name.
-If there are multiple schema files with the same type name, the one with the latest date will be used for conversion.
+- Use the file name as the type name.
+- If there are multiple schema files with the same type name, the one with the latest date will be used for conversion.
 
 ## For output types
 
@@ -170,7 +167,6 @@ api-posts-20221212235947.json -> post.ts
     }
   ]
 }
-
 ```
 
 ```ts
@@ -180,74 +176,77 @@ export type Post = {
   /**
    * カテゴリー
    */
-  category: MicroCMSRelation<unknown | null>
+  category: MicroCMSRelation<unknown | null>;
   /**
    * タイトル
    */
-  title: string
+  title: string;
   /**
    * 内容
    */
-  contents?: (PostCustomFieldRichEditor | PostCustomFieldHtml | PostCustomFieldMarkdown | PostCustomFieldImage)[]
+  contents?: (
+    | PostCustomFieldRichEditor
+    | PostCustomFieldHtml
+    | PostCustomFieldMarkdown
+    | PostCustomFieldImage
+  )[];
   /**
    * カバー画像
    */
-  coverImage?: MicroCMSImage
+  coverImage?: MicroCMSImage;
   /**
    * 関連お知らせ
    */
-  relatedPosts?: MicroCMSRelation<unknown | null>[]
-}
+  relatedPosts?: MicroCMSRelation<unknown | null>[];
+};
 
 export type PostCustomFieldRichEditor = {
   /**
    * fieldId
    */
-  fieldId: 'richEditor'
+  fieldId: 'richEditor';
   /**
    * リッチエディタ
    */
-  content: string
-}
+  content: string;
+};
 
 export type PostCustomFieldHtml = {
   /**
    * fieldId
    */
-  fieldId: 'html'
+  fieldId: 'html';
   /**
    * HTML
    */
-  content: string
-}
+  content: string;
+};
 
 export type PostCustomFieldMarkdown = {
   /**
    * fieldId
    */
-  fieldId: 'markdown'
+  fieldId: 'markdown';
   /**
    * Markdown
    */
-  content: string
-}
+  content: string;
+};
 
 export type PostCustomFieldImage = {
   /**
    * fieldId
    */
-  fieldId: 'image'
+  fieldId: 'image';
   /**
    * 代替えテキスト
    */
-  alt?: string
+  alt?: string;
   /**
    * 画像
    */
-  image: MicroCMSImage
-}
-
-
+  image: MicroCMSImage;
+};
 ```
 
 ## license

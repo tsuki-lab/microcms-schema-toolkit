@@ -1,6 +1,6 @@
 {
   "name": "microcms-generate-types",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "dist/index.js",
   "license": "MIT",
   "keywords": [
@@ -30,7 +30,13 @@
     "typescript": "^4.7.4",
     "microcms-schema-types": "workspace:*"
   },
-  "repository": "https://github.com/tsuki-lab/microcms-types",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsuki-lab/microcms-schema-toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tsuki-lab/microcms-schema-toolkit/issues"
+  },
   "author": "hanetsuki<me@tsuki-lab.net>",
   "dependencies": {
     "pluralize": "^8.0.0"
